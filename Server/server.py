@@ -1,5 +1,6 @@
 import socket
 import threading
+import os
 
 # Connection Data
 host = ''
@@ -25,10 +26,12 @@ def handle(client):
         try:
             # Receive Message From Client
             message = client.recv(4096)
-            if message.startswith(b'FILE '):  # Check if the message is a file
-                file_name = message.decode('utf-8').split()[1]
+            if message.startswith(b'FILE'):  # Check if the message is a file
+                file_name = message.split()[1].decode('utf-8')
                 file_data = client.recv(4096)
                 save_file(file_name, file_data)
+                broadcast(message)
+                broadcast_file(file_name)
             else:
                 broadcast(f'{nicknames[clients.index(client)]}: {message.decode("utf-8")}'.encode('utf-8'))
         except:
@@ -42,16 +45,17 @@ def handle(client):
             nicknames.remove(nickname)
             break
 
-# Save File Function; also broadcasts only the file name
+# Save the received file data to a file
 def save_file(file_name, file_data):
-    try:
-        with open(file_name, 'wb') as file:
-            file.write(file_data)
-        print(f'Saved file: {file_name}')
-        broadcast(f'Saved file: {file_name}'.encode('utf-8'))
-    except:
-        print(f'Failed to save file: {file_name}')
-        broadcast(f'Failed to save file: {file_name}'.encode('utf-8'))
+    with open(file_name, 'wb') as file:
+        file.write(file_data)
+    print(f'Saved file: {file_name}')
+
+# Broadcast the file to all connected clients
+def broadcast_file(file_name):
+    with open(file_name, 'rb') as file:
+        file_data = file.read()
+    broadcast(file_data)
 
 # Receiving / Listening Function
 def receive():
