@@ -65,16 +65,3 @@ To send a file use the following format:
 ```
 FILE file_path/file_name
 ```
-
-## Contributing
-
-Contributions are welcome! If you want to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Create a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
