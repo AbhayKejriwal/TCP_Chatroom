@@ -30,7 +30,7 @@ To run this project, you'll need:
 2. Open a terminal in the project directory.
 3. Run the server using the following command:
 
-```bash
+```
 python server.py
 ```
 
@@ -42,7 +42,7 @@ The server will start listening on a specified port (default is 42424).
 2. Open a terminal in the project directory.
 3. Run a client using the following command:
 
-```bash
+```
 python client.py
 ```
 
@@ -60,17 +60,8 @@ Clients can send text messages to the server, which will then be broadcasted to 
 
 ### File Transfer
 
-Clients can send files to the server, which will be broadcasted to all connected clients. The files are saved in the server's file_folder directory.
-
-## Contributing
-
-Contributions are welcome! If you want to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Create a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Clients can send files to the server, which will be broadcasted to all connected clients. The files are saved in the server's file_folder directory. 
+To send a file use the following format:
+```
+FILE file_path/file_name
+```
